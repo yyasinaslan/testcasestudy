@@ -15,7 +15,7 @@ composer install
 ```
 
 - Sunucuyu çalıştır\
-  **Not:** *Bu kod sunucuyu arka planda calistirir. Kapatmak icin [sunucu kapatma kodunu](#close-server) kullanin*
+  **Not:** *Bu kod sunucuyu arka planda calistirir. Kapatmak icin [sunucu kapatma kodunu](#sunucuyu-kapatma) kullanin*
 
 ```shell
 docker compose up -d
@@ -27,7 +27,7 @@ docker compose up -d
 php artisan migrate
 ```
 
-## Sunucuyu kapatma {#close-server}
+## Sunucuyu kapatma
 
 ```shell
 docker compose down
