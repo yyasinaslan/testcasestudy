@@ -15,7 +15,7 @@ composer install
 ```
 
 - Sunucuyu çalıştır\
-  **Not:** *Bu kod sunucuyu arka planda calistirir. Kapatmak icin [sunucu kapatma kodunu](#closer-server) kullanin*
+  **Not:** *Bu kod sunucuyu arka planda calistirir. Kapatmak icin [sunucu kapatma kodunu](#close-server) kullanin*
 
 ```shell
 docker compose up -d
