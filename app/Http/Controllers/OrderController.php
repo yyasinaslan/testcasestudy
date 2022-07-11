@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 /**
@@ -11,31 +12,10 @@ class OrderController extends Controller
 {
     /**
      * Siparis Listeleme
-     *
-
      */
     public function listOrders(Request $request)
     {
-
-        return [
-            'id' => 1,
-            'consumerId' => 12,
-            'total' => 35.0,
-            'items' => [
-                [
-                    'productId' => 122,
-                    'quantity' => 2,
-                    'unitPrice' => 10.0,
-                    'total' => 20.0
-                ],
-                [
-                    'productId' => 32,
-                    'quantity' => 1,
-                    'unitPrice' => 15.0,
-                    'total' => 15.0
-                ]
-            ]
-        ];
+        return Order::all();
     }
 
     /**

@@ -32,47 +32,56 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  type: object
                 example:
-                  id: 1
-                  consumerId: 12
-                  total: 35
-                  items:
-                    -
-                      productId: 122
-                      quantity: 2
-                      unitPrice: 10
-                      total: 20
-                    -
-                      productId: 32
-                      quantity: 1
-                      unitPrice: 15
-                      total: 15
-                properties:
-                  id:
-                    type: integer
-                    example: 1
-                  consumerId:
-                    type: integer
-                    example: 12
-                  total:
-                    type: integer
-                    example: 35
-                  items:
-                    type: array
-                    example:
-                      -
-                        productId: 122
-                        quantity: 2
-                        unitPrice: 10
-                        total: 20
-                      -
-                        productId: 32
-                        quantity: 1
-                        unitPrice: 15
-                        total: 15
+                  -
+                    id: 1
+                    customerId: 1
                     items:
-                      type: object
+                      -
+                        productId: 102
+                        quantity: 10
+                        unitPrice: '11.28'
+                        total: '112.80'
+                    total: 112.8
+                    created_at: '2022-07-11T19:15:47.000000Z'
+                    updated_at: '2022-07-11T19:15:47.000000Z'
+                  -
+                    id: 2
+                    customerId: 2
+                    items:
+                      -
+                        productId: 101
+                        quantity: 2
+                        unitPrice: '49.50'
+                        total: '99.00'
+                      -
+                        productId: 100
+                        quantity: 1
+                        unitPrice: '120.75'
+                        total: '120.75'
+                    total: 219.75
+                    created_at: '2022-07-11T19:15:47.000000Z'
+                    updated_at: '2022-07-11T19:15:47.000000Z'
+                  -
+                    id: 3
+                    customerId: 3
+                    items:
+                      -
+                        productId: 102
+                        quantity: 6
+                        unitPrice: '11.28'
+                        total: '67.68'
+                      -
+                        productId: 100
+                        quantity: 10
+                        unitPrice: '120.75'
+                        total: '1207.50'
+                    total: 1275.18
+                    created_at: '2022-07-11T19:15:47.000000Z'
+                    updated_at: '2022-07-11T19:15:47.000000Z'
       tags:
         - Siparişler
       security: []
@@ -107,7 +116,7 @@ paths:
                 consumerId:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 20
                 items:
                   type: array
                   description: ''
@@ -119,19 +128,19 @@ paths:
                       productId:
                         type: integer
                         description: ''
-                        example: 6
+                        example: 11
                       quantity:
                         type: integer
                         description: ''
-                        example: 18
+                        example: 16
                       unitPrice:
                         type: number
                         description: ''
-                        example: 11626617.165713
+                        example: 13072551.29
                       total:
                         type: number
                         description: ''
-                        example: 240.45582458
+                        example: 203.5549
                     required:
                       - productId
                       - quantity
@@ -140,7 +149,7 @@ paths:
                 total:
                   type: number
                   description: ''
-                  example: 28873163.40565
+                  example: 6.375791
               required:
                 - consumerId
                 - items
@@ -174,10 +183,10 @@ paths:
         in: path
         name: id
         description: 'The ID of the order.'
-        example: illo
+        example: 4
         required: true
         schema:
-          type: string
+          type: integer
 tags:
   -
     name: Siparişler

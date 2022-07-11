@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-if [ -d "/var/www/html/vendor" ]
-then
-    composer install
+
+result=$(composer install --dry-run 2>&1 | grep -c "Nothing to install")
+
+if [[ $result > 0 ]]; then
+    echo "Packages already installed!"
 else
-    echo "Vendor directory already exist. No need to install"
+    composer install
 fi
 
 php artisan migrate:fresh

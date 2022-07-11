@@ -95,7 +95,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 10 2022</li>
+        <li>Last updated: July 11 2022</li>
     </ul>
 </div>
 
@@ -167,25 +167,65 @@ access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">{
-    &quot;id&quot;: 1,
-    &quot;consumerId&quot;: 12,
-    &quot;total&quot;: 35,
-    &quot;items&quot;: [
-        {
-            &quot;productId&quot;: 122,
-            &quot;quantity&quot;: 2,
-            &quot;unitPrice&quot;: 10,
-            &quot;total&quot;: 20
-        },
-        {
-            &quot;productId&quot;: 32,
-            &quot;quantity&quot;: 1,
-            &quot;unitPrice&quot;: 15,
-            &quot;total&quot;: 15
-        }
-    ]
-}</code>
+<code class="language-json">[
+    {
+        &quot;id&quot;: 1,
+        &quot;customerId&quot;: 1,
+        &quot;items&quot;: [
+            {
+                &quot;productId&quot;: 102,
+                &quot;quantity&quot;: 10,
+                &quot;unitPrice&quot;: &quot;11.28&quot;,
+                &quot;total&quot;: &quot;112.80&quot;
+            }
+        ],
+        &quot;total&quot;: 112.8,
+        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;customerId&quot;: 2,
+        &quot;items&quot;: [
+            {
+                &quot;productId&quot;: 101,
+                &quot;quantity&quot;: 2,
+                &quot;unitPrice&quot;: &quot;49.50&quot;,
+                &quot;total&quot;: &quot;99.00&quot;
+            },
+            {
+                &quot;productId&quot;: 100,
+                &quot;quantity&quot;: 1,
+                &quot;unitPrice&quot;: &quot;120.75&quot;,
+                &quot;total&quot;: &quot;120.75&quot;
+            }
+        ],
+        &quot;total&quot;: 219.75,
+        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+    },
+    {
+        &quot;id&quot;: 3,
+        &quot;customerId&quot;: 3,
+        &quot;items&quot;: [
+            {
+                &quot;productId&quot;: 102,
+                &quot;quantity&quot;: 6,
+                &quot;unitPrice&quot;: &quot;11.28&quot;,
+                &quot;total&quot;: &quot;67.68&quot;
+            },
+            {
+                &quot;productId&quot;: 100,
+                &quot;quantity&quot;: 10,
+                &quot;unitPrice&quot;: &quot;120.75&quot;,
+                &quot;total&quot;: &quot;1207.50&quot;
+            }
+        ],
+        &quot;total&quot;: 1275.18,
+        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+    }
+]</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-orders" hidden>
@@ -246,16 +286,16 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"consumerId\": 16,
+    \"consumerId\": 20,
     \"items\": [
         {
-            \"productId\": 6,
-            \"quantity\": 18,
-            \"unitPrice\": 11626617.165713,
-            \"total\": 240.45582458
+            \"productId\": 11,
+            \"quantity\": 16,
+            \"unitPrice\": 13072551.29,
+            \"total\": 203.5549
         }
     ],
-    \"total\": 28873163.40565
+    \"total\": 6.375791
 }"
 </code></pre></div>
 
@@ -271,16 +311,16 @@ const headers = {
 };
 
 let body = {
-    "consumerId": 16,
+    "consumerId": 20,
     "items": [
         {
-            "productId": 6,
-            "quantity": 18,
-            "unitPrice": 11626617.165713,
-            "total": 240.45582458
+            "productId": 11,
+            "quantity": 16,
+            "unitPrice": 13072551.29,
+            "total": 203.5549
         }
     ],
-    "total": 28873163.40565
+    "total": 6.375791
 };
 
 fetch(url, {
@@ -338,7 +378,7 @@ fetch(url, {
                 <input type="number"
                name="consumerId"
                data-endpoint="POSTapi-orders"
-               value="16"
+               value="20"
                data-component="body" hidden>
     <br>
 
@@ -355,7 +395,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.productId"
                data-endpoint="POSTapi-orders"
-               value="6"
+               value="11"
                data-component="body" hidden>
     <br>
 
@@ -365,7 +405,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.quantity"
                data-endpoint="POSTapi-orders"
-               value="18"
+               value="16"
                data-component="body" hidden>
     <br>
 
@@ -375,7 +415,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.unitPrice"
                data-endpoint="POSTapi-orders"
-               value="11626617.165713"
+               value="13072551.29"
                data-component="body" hidden>
     <br>
 
@@ -385,7 +425,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.total"
                data-endpoint="POSTapi-orders"
-               value="240.45582458"
+               value="203.5549"
                data-component="body" hidden>
     <br>
 
@@ -397,7 +437,7 @@ fetch(url, {
                 <input type="number"
                name="total"
                data-endpoint="POSTapi-orders"
-               value="28873163.40565"
+               value="6.375791"
                data-component="body" hidden>
     <br>
 
@@ -417,14 +457,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/orders/illo" \
+    "http://localhost/api/orders/4" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/orders/illo"
+    "http://localhost/api/orders/4"
 );
 
 const headers = {
@@ -482,11 +522,11 @@ fetch(url, {
         </p>
                     <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
                name="id"
                data-endpoint="DELETEapi-orders--id-"
-               value="illo"
+               value="4"
                data-component="url" hidden>
     <br>
 <p>The ID of the order.</p>

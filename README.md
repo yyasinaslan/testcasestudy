@@ -5,7 +5,9 @@
 - Kaynak kodlarını indirin
 
 ```shell
-git clone https://github.com/yyasinaslan/testcasestudy.git && cd testcasestudy
+git clone https://github.com/yyasinaslan/testcasestudy.git
+
+cd testcasestudy
 ```
 
 - Sunucuyu çalıştır

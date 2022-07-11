@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Test Case Study Documentation",
-        "_postman_id": "c4eb3a77-3c72-4017-9a4b-cab79222002f",
+        "_postman_id": "b5cd58e5-5ec1-48e2-90fb-bc4705e8a0a9",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -70,7 +70,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"id\":1,\"consumerId\":12,\"total\":35,\"items\":[{\"productId\":122,\"quantity\":2,\"unitPrice\":10,\"total\":20},{\"productId\":32,\"quantity\":1,\"unitPrice\":15,\"total\":15}]}",
+                            "body": "[{\"id\":1,\"customerId\":1,\"items\":[{\"productId\":102,\"quantity\":10,\"unitPrice\":\"11.28\",\"total\":\"112.80\"}],\"total\":112.8,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":2,\"customerId\":2,\"items\":[{\"productId\":101,\"quantity\":2,\"unitPrice\":\"49.50\",\"total\":\"99.00\"},{\"productId\":100,\"quantity\":1,\"unitPrice\":\"120.75\",\"total\":\"120.75\"}],\"total\":219.75,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":3,\"customerId\":3,\"items\":[{\"productId\":102,\"quantity\":6,\"unitPrice\":\"11.28\",\"total\":\"67.68\"},{\"productId\":100,\"quantity\":10,\"unitPrice\":\"120.75\",\"total\":\"1207.50\"}],\"total\":1275.18,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"}]",
                             "name": ""
                         }
                     ]
@@ -97,7 +97,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"consumerId\":16,\"items\":[{\"productId\":6,\"quantity\":18,\"unitPrice\":11626617.165713,\"total\":240.45582458}],\"total\":28873163.40565}"
+                            "raw": "{\"consumerId\":20,\"items\":[{\"productId\":11,\"quantity\":16,\"unitPrice\":13072551.29,\"total\":203.5549}],\"total\":6.375791}"
                         },
                         "description": "",
                         "auth": {
@@ -118,7 +118,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "illo",
+                                    "value": "4",
                                     "description": "The ID of the order."
                                 }
                             ]
