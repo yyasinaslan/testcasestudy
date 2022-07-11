@@ -70,6 +70,16 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="urunler">
+                    <a href="#urunler">Ürünler</a>
+                </li>
+                                    <ul id="tocify-subheader-urunler" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="urunler-GETapi-products">
+                        <a href="#urunler-GETapi-products">Ürünleri Listele</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="siparisler">
                     <a href="#siparisler">Siparişler</a>
                 </li>
@@ -111,6 +121,151 @@
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
+
+        <h1 id="urunler">Ürünler</h1>
+
+    
+
+            <h2 id="urunler-GETapi-products">Ürünleri Listele</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/products" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/products"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-products">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 56
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">[
+    {
+        &quot;id&quot;: 1,
+        &quot;category&quot;: 1,
+        &quot;name&quot;: &quot;Black&amp;Decker A7062 40 Par&ccedil;a Cırcırlı Tornavida Seti&quot;,
+        &quot;price&quot;: 120.75,
+        &quot;stock&quot;: 10,
+        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;category&quot;: 1,
+        &quot;name&quot;: &quot;Reko Mini Tamir Hassas Tornavida Seti 32&#039;li&quot;,
+        &quot;price&quot;: 49.5,
+        &quot;stock&quot;: 10,
+        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+    },
+    {
+        &quot;id&quot;: 3,
+        &quot;category&quot;: 2,
+        &quot;name&quot;: &quot;Viko Karre Anahtar - Beyaz&quot;,
+        &quot;price&quot;: 11.28,
+        &quot;stock&quot;: 10,
+        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+    },
+    {
+        &quot;id&quot;: 4,
+        &quot;category&quot;: 2,
+        &quot;name&quot;: &quot;Legrand Salbei Anahtar, Al&uuml;minyum&quot;,
+        &quot;price&quot;: 22.8,
+        &quot;stock&quot;: 10,
+        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+    },
+    {
+        &quot;id&quot;: 5,
+        &quot;category&quot;: 2,
+        &quot;name&quot;: &quot;Schneider Asfora Beyaz Kom&uuml;tat&ouml;r&quot;,
+        &quot;price&quot;: 12.95,
+        &quot;stock&quot;: 10,
+        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+    }
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-products"></code></pre>
+</span>
+<span id="execution-error-GETapi-products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-products"></code></pre>
+</span>
+<form id="form-GETapi-products" data-method="GET"
+      data-path="api/products"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-products"
+                    onclick="tryItOut('GETapi-products');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-products"
+                    onclick="cancelTryOut('GETapi-products');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-products" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/products</code></b>
+        </p>
+                    </form>
 
         <h1 id="siparisler">Siparişler</h1>
 
@@ -162,7 +317,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
+x-ratelimit-remaining: 57
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -286,16 +441,16 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"consumerId\": 20,
+    \"consumerId\": 14,
     \"items\": [
         {
             \"productId\": 11,
-            \"quantity\": 16,
-            \"unitPrice\": 13072551.29,
-            \"total\": 203.5549
+            \"quantity\": 3,
+            \"unitPrice\": 1765.9477595,
+            \"total\": 0.846325
         }
     ],
-    \"total\": 6.375791
+    \"total\": 0
 }"
 </code></pre></div>
 
@@ -311,16 +466,16 @@ const headers = {
 };
 
 let body = {
-    "consumerId": 20,
+    "consumerId": 14,
     "items": [
         {
             "productId": 11,
-            "quantity": 16,
-            "unitPrice": 13072551.29,
-            "total": 203.5549
+            "quantity": 3,
+            "unitPrice": 1765.9477595,
+            "total": 0.846325
         }
     ],
-    "total": 6.375791
+    "total": 0
 };
 
 fetch(url, {
@@ -378,7 +533,7 @@ fetch(url, {
                 <input type="number"
                name="consumerId"
                data-endpoint="POSTapi-orders"
-               value="20"
+               value="14"
                data-component="body" hidden>
     <br>
 
@@ -405,7 +560,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.quantity"
                data-endpoint="POSTapi-orders"
-               value="16"
+               value="3"
                data-component="body" hidden>
     <br>
 
@@ -415,7 +570,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.unitPrice"
                data-endpoint="POSTapi-orders"
-               value="13072551.29"
+               value="1765.9477595"
                data-component="body" hidden>
     <br>
 
@@ -425,7 +580,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.total"
                data-endpoint="POSTapi-orders"
-               value="203.5549"
+               value="0.846325"
                data-component="body" hidden>
     <br>
 
@@ -437,7 +592,7 @@ fetch(url, {
                 <input type="number"
                name="total"
                data-endpoint="POSTapi-orders"
-               value="6.375791"
+               value="0"
                data-component="body" hidden>
     <br>
 
@@ -457,14 +612,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/orders/4" \
+    "http://localhost/api/orders/15" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/orders/4"
+    "http://localhost/api/orders/15"
 );
 
 const headers = {
@@ -526,7 +681,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="DELETEapi-orders--id-"
-               value="4"
+               value="15"
                data-component="url" hidden>
     <br>
 <p>The ID of the order.</p>

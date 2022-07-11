@@ -10,11 +10,73 @@
     ],
     "info": {
         "name": "Test Case Study Documentation",
-        "_postman_id": "b5cd58e5-5ec1-48e2-90fb-bc4705e8a0a9",
+        "_postman_id": "e91954c9-ddbe-45d7-82d3-72f4db77f4d2",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
+        {
+            "name": "\u00dcr\u00fcnler",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u00dcr\u00fcnleri Listele",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "[{\"id\":1,\"category\":1,\"name\":\"Black&Decker A7062 40 Par\\u00e7a C\\u0131rc\\u0131rl\\u0131 Tornavida Seti\",\"price\":120.75,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":2,\"category\":1,\"name\":\"Reko Mini Tamir Hassas Tornavida Seti 32'li\",\"price\":49.5,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":3,\"category\":2,\"name\":\"Viko Karre Anahtar - Beyaz\",\"price\":11.28,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":4,\"category\":2,\"name\":\"Legrand Salbei Anahtar, Al\\u00fcminyum\",\"price\":22.8,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":5,\"category\":2,\"name\":\"Schneider Asfora Beyaz Kom\\u00fctat\\u00f6r\",\"price\":12.95,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"}]",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "Sipari\u015fler",
             "description": "",
@@ -62,7 +124,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "59"
+                                    "value": "57"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -97,7 +159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"consumerId\":20,\"items\":[{\"productId\":11,\"quantity\":16,\"unitPrice\":13072551.29,\"total\":203.5549}],\"total\":6.375791}"
+                            "raw": "{\"consumerId\":14,\"items\":[{\"productId\":11,\"quantity\":3,\"unitPrice\":1765.9477595,\"total\":0.846325}],\"total\":0}"
                         },
                         "description": "",
                         "auth": {
@@ -118,7 +180,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "15",
                                     "description": "The ID of the order."
                                 }
                             ]

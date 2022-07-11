@@ -7,6 +7,78 @@ servers:
   -
     url: 'http://localhost'
 paths:
+  /api/products:
+    get:
+      summary: 'Ürünleri Listele'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    category: 1
+                    name: 'Black&Decker A7062 40 Parça Cırcırlı Tornavida Seti'
+                    price: 120.75
+                    stock: 10
+                    created_at: '2022-07-11T19:15:47.000000Z'
+                    updated_at: '2022-07-11T19:15:47.000000Z'
+                  -
+                    id: 2
+                    category: 1
+                    name: "Reko Mini Tamir Hassas Tornavida Seti 32'li"
+                    price: 49.5
+                    stock: 10
+                    created_at: '2022-07-11T19:15:47.000000Z'
+                    updated_at: '2022-07-11T19:15:47.000000Z'
+                  -
+                    id: 3
+                    category: 2
+                    name: 'Viko Karre Anahtar - Beyaz'
+                    price: 11.28
+                    stock: 10
+                    created_at: '2022-07-11T19:15:47.000000Z'
+                    updated_at: '2022-07-11T19:15:47.000000Z'
+                  -
+                    id: 4
+                    category: 2
+                    name: 'Legrand Salbei Anahtar, Alüminyum'
+                    price: 22.8
+                    stock: 10
+                    created_at: '2022-07-11T19:15:47.000000Z'
+                    updated_at: '2022-07-11T19:15:47.000000Z'
+                  -
+                    id: 5
+                    category: 2
+                    name: 'Schneider Asfora Beyaz Komütatör'
+                    price: 12.95
+                    stock: 10
+                    created_at: '2022-07-11T19:15:47.000000Z'
+                    updated_at: '2022-07-11T19:15:47.000000Z'
+      tags:
+        - Ürünler
+      security: []
   /api/orders:
     get:
       summary: 'Siparis Listeleme'
@@ -116,7 +188,7 @@ paths:
                 consumerId:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 14
                 items:
                   type: array
                   description: ''
@@ -132,15 +204,15 @@ paths:
                       quantity:
                         type: integer
                         description: ''
-                        example: 16
+                        example: 3
                       unitPrice:
                         type: number
                         description: ''
-                        example: 13072551.29
+                        example: 1765.9477595
                       total:
                         type: number
                         description: ''
-                        example: 203.5549
+                        example: 0.846325
                     required:
                       - productId
                       - quantity
@@ -149,7 +221,7 @@ paths:
                 total:
                   type: number
                   description: ''
-                  example: 6.375791
+                  example: 0.0
               required:
                 - consumerId
                 - items
@@ -183,11 +255,14 @@ paths:
         in: path
         name: id
         description: 'The ID of the order.'
-        example: 4
+        example: 15
         required: true
         schema:
           type: integer
 tags:
+  -
+    name: Ürünler
+    description: ''
   -
     name: Siparişler
     description: ''

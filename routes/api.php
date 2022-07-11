@@ -19,4 +19,4 @@ Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'listOrders
 Route::post('/orders', [\App\Http\Controllers\OrderController::class, 'addOrder']);
 Route::delete('/orders/{id}', [\App\Http\Controllers\OrderController::class, 'deleteOrder']);
 
-Route::get('/products', [\App\Http\Controllers\OrderController::class, 'listOrders']);
+Route::get('/products', [\App\Http\Controllers\ProductController::class, 'listProducts']);
