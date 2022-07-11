@@ -24,6 +24,7 @@ services:
             - sail
         depends_on:
             - mariadb
+        entrypoint: ["bash", "-c", "/var/www/html/init.sh"]
     mariadb:
         image: 'mariadb:10'
         ports:
@@ -41,9 +42,9 @@ services:
         networks:
             - sail
         healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}", "-h", "localhost" ]
             retries: 3
-            timeout: 5s
+            timeout: 10s
 networks:
     sail:
         driver: bridge

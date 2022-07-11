@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'Only use API';
+
+    return dd(\App\Models\Product::all());
+//    return resource_path('example_data/orders.json');;
+    return "Only use API!";
 });

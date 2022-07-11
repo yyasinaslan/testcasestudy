@@ -2,32 +2,30 @@
 
 ## Kurulum
 
-- Kaynak kodlarını indirin:
+- Kaynak kodlarını indirin
 
 ```shell
-git clone https://github.com/yyasinaslan/ideasoftcasestudy.git
+git clone https://github.com/yyasinaslan/testcasestudy.git && cd testcasestudy
 ```
 
-- Gereken paketleri yükle
+- Sunucuyu çalıştır
 
 ```shell
-composer install
+docker compose up
 ```
 
-- Sunucuyu çalıştır\
-  **Not:** *Bu kod sunucuyu arka planda calistirir. Kapatmak icin [sunucu kapatma kodunu](#sunucuyu-kapatma) kullanin*
+Sunucu calistiktan sonra `init.sh` dosyasindaki komutlari otomatik calistirir. Bu komutlar gerekli paketleri ve
+veritabani tablolarini kurmaya yarar.
 
-```shell
-docker compose up -d
-```
+API'ye http://localhost:80/api uzerinden erisebilirsiniz.
 
-- Veritabanını ilk ayarlarını yap
+## API Dokumantasyon
 
-```shell
-php artisan migrate
-```
+API dokumantasyonu icin [http://localhost/docs](http://localhost/docs) linkini kullanabilirsiniz.
 
-## Sunucuyu kapatma
+## Sunucuyu Kapatma
+
+*Sunucuyu kapatmak icin ayni terminalden `CTLR + C` veya asagidaki komutu kullanabilirsiniz.*
 
 ```shell
 docker compose down

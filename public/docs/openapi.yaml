@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: 'Test Case Study Documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/orders:
+    get:
+      summary: 'Siparis Listeleme'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  consumerId: 12
+                  total: 35
+                  items:
+                    -
+                      productId: 122
+                      quantity: 2
+                      unitPrice: 10
+                      total: 20
+                    -
+                      productId: 32
+                      quantity: 1
+                      unitPrice: 15
+                      total: 15
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  consumerId:
+                    type: integer
+                    example: 12
+                  total:
+                    type: integer
+                    example: 35
+                  items:
+                    type: array
+                    example:
+                      -
+                        productId: 122
+                        quantity: 2
+                        unitPrice: 10
+                        total: 20
+                      -
+                        productId: 32
+                        quantity: 1
+                        unitPrice: 15
+                        total: 15
+                    items:
+                      type: object
+      tags:
+        - Siparişler
+      security: []
+    post:
+      summary: 'Siparis Ekleme'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Siparişler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consumerId:
+                  type: integer
+                  description: ''
+                  example: 16
+                items:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: integer
+                        description: ''
+                        example: 6
+                      quantity:
+                        type: integer
+                        description: ''
+                        example: 18
+                      unitPrice:
+                        type: number
+                        description: ''
+                        example: 11626617.165713
+                      total:
+                        type: number
+                        description: ''
+                        example: 240.45582458
+                    required:
+                      - productId
+                      - quantity
+                      - unitPrice
+                      - total
+                total:
+                  type: number
+                  description: ''
+                  example: 28873163.40565
+              required:
+                - consumerId
+                - items
+                - total
+      security: []
+  '/api/orders/{id}':
+    delete:
+      summary: 'Siparis Silme'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Siparişler
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the order.'
+        example: illo
+        required: true
+        schema:
+          type: string
+tags:
+  -
+    name: Siparişler
+    description: ''
