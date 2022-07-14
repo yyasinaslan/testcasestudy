@@ -10,23 +10,23 @@
     ],
     "info": {
         "name": "Test Case Study Documentation",
-        "_postman_id": "e91954c9-ddbe-45d7-82d3-72f4db77f4d2",
+        "_postman_id": "7acede23-e077-44dc-85aa-bfdc55bdd9aa",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
-            "name": "\u00dcr\u00fcnler",
+            "name": "Indirim Kurallari",
             "description": "",
             "item": [
                 {
-                    "name": "\u00dcr\u00fcnleri Listele",
+                    "name": "Butun kurallari getir",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products",
+                            "path": "api\/discounts",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products"
+                            "raw": "{{baseUrl}}\/api\/discounts"
                         },
                         "method": "GET",
                         "header": [
@@ -62,7 +62,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "56"
+                                    "value": "55"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -70,7 +70,71 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "[{\"id\":1,\"category\":1,\"name\":\"Black&Decker A7062 40 Par\\u00e7a C\\u0131rc\\u0131rl\\u0131 Tornavida Seti\",\"price\":120.75,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":2,\"category\":1,\"name\":\"Reko Mini Tamir Hassas Tornavida Seti 32'li\",\"price\":49.5,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":3,\"category\":2,\"name\":\"Viko Karre Anahtar - Beyaz\",\"price\":11.28,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":4,\"category\":2,\"name\":\"Legrand Salbei Anahtar, Al\\u00fcminyum\",\"price\":22.8,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":5,\"category\":2,\"name\":\"Schneider Asfora Beyaz Kom\\u00fctat\\u00f6r\",\"price\":12.95,\"stock\":10,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"}]",
+                            "body": "[{\"id\":1,\"name\":\"10 percent over 1000\",\"type\":\"cart\",\"filters\":null,\"rule\":\"{\\\"condition\\\":\\\"{cart.total} >= 1000\\\",\\\"amount\\\":\\\"{cart.total} * 0.1\\\"}\",\"expired_at\":null,\"created_at\":\"2022-07-14T23:06:30.000000Z\",\"updated_at\":\"2022-07-14T23:06:30.000000Z\"},{\"id\":2,\"name\":\"Buy 5 get 1 in category id 2\",\"type\":\"product\",\"filters\":null,\"rule\":\"{\\\"condition\\\":\\\"{product.category} == 2 && {product.quantity} == 6\\\",\\\"amount\\\":\\\"{product.unitPrice}\\\"}\",\"expired_at\":null,\"created_at\":\"2022-07-14T23:06:30.000000Z\",\"updated_at\":\"2022-07-14T23:06:30.000000Z\"},{\"id\":3,\"name\":\"Buy atleast 2 get %20 discount for the cheapest item in category id 2\",\"type\":\"cart\",\"filters\":\"{\\\"category\\\":1}\",\"rule\":\"{\\\"condition\\\":\\\"{cart.quantity} >= 2\\\",\\\"amount\\\":\\\"{cart.cheapest} * 0.2\\\"}\",\"expired_at\":null,\"created_at\":\"2022-07-14T23:06:30.000000Z\",\"updated_at\":\"2022-07-14T23:06:30.000000Z\"}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Sipari\u015f i\u00e7in indirim hesapla",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/discounts\/:order_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/discounts\/:order_id",
+                            "variable": [
+                                {
+                                    "id": "order_id",
+                                    "key": "order_id",
+                                    "value": "6",
+                                    "description": "Sipari\u015f id (order_id)"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "54"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
                             "name": ""
                         }
                     ]
@@ -109,30 +173,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "57"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
+                            "header": [],
                             "code": 200,
-                            "body": "[{\"id\":1,\"customerId\":1,\"items\":[{\"productId\":102,\"quantity\":10,\"unitPrice\":\"11.28\",\"total\":\"112.80\"}],\"total\":112.8,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":2,\"customerId\":2,\"items\":[{\"productId\":101,\"quantity\":2,\"unitPrice\":\"49.50\",\"total\":\"99.00\"},{\"productId\":100,\"quantity\":1,\"unitPrice\":\"120.75\",\"total\":\"120.75\"}],\"total\":219.75,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"},{\"id\":3,\"customerId\":3,\"items\":[{\"productId\":102,\"quantity\":6,\"unitPrice\":\"11.28\",\"total\":\"67.68\"},{\"productId\":100,\"quantity\":10,\"unitPrice\":\"120.75\",\"total\":\"1207.50\"}],\"total\":1275.18,\"created_at\":\"2022-07-11T19:15:47.000000Z\",\"updated_at\":\"2022-07-11T19:15:47.000000Z\"}]",
+                            "body": "[\n{\n\"id\": 1,\n\"customerId\": 1,\n\"items\": [\n{\n\"productId\": 102,\n\"quantity\": 10,\n\"unitPrice\": \"11.28\",\n\"total\": \"112.80\"\n}\n],\n\"total\": 112.8,\n\"created_at\": \"2022-07-12T15:14:16.000000Z\",\n\"updated_at\": \"2022-07-12T15:14:16.000000Z\"\n}\n]",
                             "name": ""
                         }
                     ]
@@ -159,7 +202,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"consumerId\":14,\"items\":[{\"productId\":11,\"quantity\":3,\"unitPrice\":1765.9477595,\"total\":0.846325}],\"total\":0}"
+                            "raw": "{\"customerId\":18,\"items\":[{\"productId\":16,\"quantity\":16}]}"
                         },
                         "description": "",
                         "auth": {
@@ -180,7 +223,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "15",
+                                    "value": "1",
                                     "description": "The ID of the order."
                                 }
                             ]
@@ -203,6 +246,47 @@
                         }
                     },
                     "response": []
+                }
+            ]
+        },
+        {
+            "name": "\u00dcr\u00fcnler",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u00dcr\u00fcnleri Listele",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u00dcr\u00fcnler i\u00e7in \u015fimdilik sadece listeleme \u00f6zelli\u011fi bulunmaktad\u0131r.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n{\n\"id\": 100,\n\"category\": 1,\n\"name\": \"Black&Decker A7062 40 Par\u00e7a C\u0131rc\u0131rl\u0131 Tornavida Seti\",\n\"price\": 120.75,\n\"stock\": 10,\n\"created_at\": \"2022-07-12T15:14:16.000000Z\",\n\"updated_at\": \"2022-07-12T15:14:16.000000Z\"\n}\n]",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         }

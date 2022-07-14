@@ -70,12 +70,15 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="urunler">
-                    <a href="#urunler">Ürünler</a>
+                <li class="tocify-item level-1" data-unique="indirim-kurallari">
+                    <a href="#indirim-kurallari">Indirim Kurallari</a>
                 </li>
-                                    <ul id="tocify-subheader-urunler" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="urunler-GETapi-products">
-                        <a href="#urunler-GETapi-products">Ürünleri Listele</a>
+                                    <ul id="tocify-subheader-indirim-kurallari" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="indirim-kurallari-GETapi-discounts">
+                        <a href="#indirim-kurallari-GETapi-discounts">Butun kurallari getir</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="indirim-kurallari-GETapi-discounts--order_id-">
+                        <a href="#indirim-kurallari-GETapi-discounts--order_id-">Sipariş için indirim hesapla</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -95,6 +98,16 @@
                     </li>
                                                     </ul>
                             </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="urunler">
+                    <a href="#urunler">Ürünler</a>
+                </li>
+                                    <ul id="tocify-subheader-urunler" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="urunler-GETapi-products">
+                        <a href="#urunler-GETapi-products">Ürünleri Listele</a>
+                    </li>
+                                                    </ul>
+                            </ul>
         
                         
             </div>
@@ -105,7 +118,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 11 2022</li>
+        <li>Last updated: July 14 2022</li>
     </ul>
 </div>
 
@@ -122,31 +135,31 @@
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
-        <h1 id="urunler">Ürünler</h1>
+        <h1 id="indirim-kurallari">Indirim Kurallari</h1>
 
     
 
-            <h2 id="urunler-GETapi-products">Ürünleri Listele</h2>
+            <h2 id="indirim-kurallari-GETapi-discounts">Butun kurallari getir</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-products">
+<span id="example-requests-GETapi-discounts">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/products" \
+    --get "http://localhost/api/discounts" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/products"
+    "http://localhost/api/discounts"
 );
 
 const headers = {
@@ -161,7 +174,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-products">
+<span id="example-responses-GETapi-discounts">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -172,7 +185,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 56
+x-ratelimit-remaining: 55
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -180,91 +193,182 @@ access-control-allow-origin: *
 <code class="language-json">[
     {
         &quot;id&quot;: 1,
-        &quot;category&quot;: 1,
-        &quot;name&quot;: &quot;Black&amp;Decker A7062 40 Par&ccedil;a Cırcırlı Tornavida Seti&quot;,
-        &quot;price&quot;: 120.75,
-        &quot;stock&quot;: 10,
-        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+        &quot;name&quot;: &quot;10 percent over 1000&quot;,
+        &quot;type&quot;: &quot;cart&quot;,
+        &quot;filters&quot;: null,
+        &quot;rule&quot;: &quot;{\&quot;condition\&quot;:\&quot;{cart.total} &gt;= 1000\&quot;,\&quot;amount\&quot;:\&quot;{cart.total} * 0.1\&quot;}&quot;,
+        &quot;expired_at&quot;: null,
+        &quot;created_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;
     },
     {
         &quot;id&quot;: 2,
-        &quot;category&quot;: 1,
-        &quot;name&quot;: &quot;Reko Mini Tamir Hassas Tornavida Seti 32&#039;li&quot;,
-        &quot;price&quot;: 49.5,
-        &quot;stock&quot;: 10,
-        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+        &quot;name&quot;: &quot;Buy 5 get 1 in category id 2&quot;,
+        &quot;type&quot;: &quot;product&quot;,
+        &quot;filters&quot;: null,
+        &quot;rule&quot;: &quot;{\&quot;condition\&quot;:\&quot;{product.category} == 2 &amp;&amp; {product.quantity} == 6\&quot;,\&quot;amount\&quot;:\&quot;{product.unitPrice}\&quot;}&quot;,
+        &quot;expired_at&quot;: null,
+        &quot;created_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;
     },
     {
         &quot;id&quot;: 3,
-        &quot;category&quot;: 2,
-        &quot;name&quot;: &quot;Viko Karre Anahtar - Beyaz&quot;,
-        &quot;price&quot;: 11.28,
-        &quot;stock&quot;: 10,
-        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 4,
-        &quot;category&quot;: 2,
-        &quot;name&quot;: &quot;Legrand Salbei Anahtar, Al&uuml;minyum&quot;,
-        &quot;price&quot;: 22.8,
-        &quot;stock&quot;: 10,
-        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 5,
-        &quot;category&quot;: 2,
-        &quot;name&quot;: &quot;Schneider Asfora Beyaz Kom&uuml;tat&ouml;r&quot;,
-        &quot;price&quot;: 12.95,
-        &quot;stock&quot;: 10,
-        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+        &quot;name&quot;: &quot;Buy atleast 2 get %20 discount for the cheapest item in category id 2&quot;,
+        &quot;type&quot;: &quot;cart&quot;,
+        &quot;filters&quot;: &quot;{\&quot;category\&quot;:1}&quot;,
+        &quot;rule&quot;: &quot;{\&quot;condition\&quot;:\&quot;{cart.quantity} &gt;= 2\&quot;,\&quot;amount\&quot;:\&quot;{cart.cheapest} * 0.2\&quot;}&quot;,
+        &quot;expired_at&quot;: null,
+        &quot;created_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;
     }
 ]</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-products" hidden>
+<span id="execution-results-GETapi-discounts" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-products"></span>:
+                id="execution-response-status-GETapi-discounts"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-products"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-discounts"></code></pre>
 </span>
-<span id="execution-error-GETapi-products" hidden>
+<span id="execution-error-GETapi-discounts" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-products"></code></pre>
+    <pre><code id="execution-error-message-GETapi-discounts"></code></pre>
 </span>
-<form id="form-GETapi-products" data-method="GET"
-      data-path="api/products"
+<form id="form-GETapi-discounts" data-method="GET"
+      data-path="api/discounts"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-products', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-discounts', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-products"
-                    onclick="tryItOut('GETapi-products');">Try it out ⚡
+                    id="btn-tryout-GETapi-discounts"
+                    onclick="tryItOut('GETapi-discounts');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-products"
-                    onclick="cancelTryOut('GETapi-products');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-discounts"
+                    onclick="cancelTryOut('GETapi-discounts');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-products" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-discounts" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/products</code></b>
+            <b><code>api/discounts</code></b>
         </p>
+                    </form>
+
+            <h2 id="indirim-kurallari-GETapi-discounts--order_id-">Sipariş için indirim hesapla</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-discounts--order_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/discounts/6" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/discounts/6"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-discounts--order_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">content-type: text/html; charset=UTF-8
+cache-control: no-cache, private
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 54
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json"></code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-discounts--order_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-discounts--order_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-discounts--order_id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-discounts--order_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-discounts--order_id-"></code></pre>
+</span>
+<form id="form-GETapi-discounts--order_id-" data-method="GET"
+      data-path="api/discounts/{order_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-discounts--order_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-discounts--order_id-"
+                    onclick="tryItOut('GETapi-discounts--order_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-discounts--order_id-"
+                    onclick="cancelTryOut('GETapi-discounts--order_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-discounts--order_id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/discounts/{order_id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>order_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="order_id"
+               data-endpoint="GETapi-discounts--order_id-"
+               value="6"
+               data-component="url" hidden>
+    <br>
+<p>Sipariş id (order_id)</p>
+            </p>
                     </form>
 
         <h1 id="siparisler">Siparişler</h1>
@@ -310,17 +414,7 @@ fetch(url, {
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 57
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
+                <pre>
 
 <code class="language-json">[
     {
@@ -335,50 +429,8 @@ access-control-allow-origin: *
             }
         ],
         &quot;total&quot;: 112.8,
-        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 2,
-        &quot;customerId&quot;: 2,
-        &quot;items&quot;: [
-            {
-                &quot;productId&quot;: 101,
-                &quot;quantity&quot;: 2,
-                &quot;unitPrice&quot;: &quot;49.50&quot;,
-                &quot;total&quot;: &quot;99.00&quot;
-            },
-            {
-                &quot;productId&quot;: 100,
-                &quot;quantity&quot;: 1,
-                &quot;unitPrice&quot;: &quot;120.75&quot;,
-                &quot;total&quot;: &quot;120.75&quot;
-            }
-        ],
-        &quot;total&quot;: 219.75,
-        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
-    },
-    {
-        &quot;id&quot;: 3,
-        &quot;customerId&quot;: 3,
-        &quot;items&quot;: [
-            {
-                &quot;productId&quot;: 102,
-                &quot;quantity&quot;: 6,
-                &quot;unitPrice&quot;: &quot;11.28&quot;,
-                &quot;total&quot;: &quot;67.68&quot;
-            },
-            {
-                &quot;productId&quot;: 100,
-                &quot;quantity&quot;: 10,
-                &quot;unitPrice&quot;: &quot;120.75&quot;,
-                &quot;total&quot;: &quot;1207.50&quot;
-            }
-        ],
-        &quot;total&quot;: 1275.18,
-        &quot;created_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-11T19:15:47.000000Z&quot;
+        &quot;created_at&quot;: &quot;2022-07-12T15:14:16.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-12T15:14:16.000000Z&quot;
     }
 ]</code>
  </pre>
@@ -441,16 +493,13 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"consumerId\": 14,
+    \"customerId\": 18,
     \"items\": [
         {
-            \"productId\": 11,
-            \"quantity\": 3,
-            \"unitPrice\": 1765.9477595,
-            \"total\": 0.846325
+            \"productId\": 16,
+            \"quantity\": 16
         }
-    ],
-    \"total\": 0
+    ]
 }"
 </code></pre></div>
 
@@ -466,16 +515,13 @@ const headers = {
 };
 
 let body = {
-    "consumerId": 14,
+    "customerId": 18,
     "items": [
         {
-            "productId": 11,
-            "quantity": 3,
-            "unitPrice": 1765.9477595,
-            "total": 0.846325
+            "productId": 16,
+            "quantity": 16
         }
-    ],
-    "total": 0
+    ]
 };
 
 fetch(url, {
@@ -529,11 +575,11 @@ fetch(url, {
         </p>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
-            <b><code>consumerId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+            <b><code>customerId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
-               name="consumerId"
+               name="customerId"
                data-endpoint="POSTapi-orders"
-               value="14"
+               value="18"
                data-component="body" hidden>
     <br>
 
@@ -550,7 +596,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.productId"
                data-endpoint="POSTapi-orders"
-               value="11"
+               value="16"
                data-component="body" hidden>
     <br>
 
@@ -560,42 +606,12 @@ fetch(url, {
                 <input type="number"
                name="items.0.quantity"
                data-endpoint="POSTapi-orders"
-               value="3"
-               data-component="body" hidden>
-    <br>
-
-                    </p>
-                                                                <p>
-                        <b><code>items[].unitPrice</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-                <input type="number"
-               name="items.0.unitPrice"
-               data-endpoint="POSTapi-orders"
-               value="1765.9477595"
-               data-component="body" hidden>
-    <br>
-
-                    </p>
-                                                                <p>
-                        <b><code>items[].total</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-                <input type="number"
-               name="items.0.total"
-               data-endpoint="POSTapi-orders"
-               value="0.846325"
+               value="16"
                data-component="body" hidden>
     <br>
 
                     </p>
                                     </details>
-        </p>
-                <p>
-            <b><code>total</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-                <input type="number"
-               name="total"
-               data-endpoint="POSTapi-orders"
-               value="0"
-               data-component="body" hidden>
-    <br>
-
         </p>
         </form>
 
@@ -612,14 +628,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/orders/15" \
+    "http://localhost/api/orders/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/orders/15"
+    "http://localhost/api/orders/1"
 );
 
 const headers = {
@@ -681,11 +697,110 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="DELETEapi-orders--id-"
-               value="15"
+               value="1"
                data-component="url" hidden>
     <br>
 <p>The ID of the order.</p>
             </p>
+                    </form>
+
+        <h1 id="urunler">Ürünler</h1>
+
+    
+
+            <h2 id="urunler-GETapi-products">Ürünleri Listele</h2>
+
+<p>
+</p>
+
+<p>Ürünler için şimdilik sadece listeleme özelliği bulunmaktadır.</p>
+
+<span id="example-requests-GETapi-products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/products" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/products"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-products">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">[
+    {
+        &quot;id&quot;: 100,
+        &quot;category&quot;: 1,
+        &quot;name&quot;: &quot;Black&amp;Decker A7062 40 Par&ccedil;a Cırcırlı Tornavida Seti&quot;,
+        &quot;price&quot;: 120.75,
+        &quot;stock&quot;: 10,
+        &quot;created_at&quot;: &quot;2022-07-12T15:14:16.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-12T15:14:16.000000Z&quot;
+    }
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-products"></code></pre>
+</span>
+<span id="execution-error-GETapi-products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-products"></code></pre>
+</span>
+<form id="form-GETapi-products" data-method="GET"
+      data-path="api/products"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-products"
+                    onclick="tryItOut('GETapi-products');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-products"
+                    onclick="cancelTryOut('GETapi-products');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-products" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/products</code></b>
+        </p>
                     </form>
 
     

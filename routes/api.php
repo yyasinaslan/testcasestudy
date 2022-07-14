@@ -20,3 +20,6 @@ Route::post('/orders', [\App\Http\Controllers\OrderController::class, 'addOrder'
 Route::delete('/orders/{id}', [\App\Http\Controllers\OrderController::class, 'deleteOrder']);
 
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'listProducts']);
+
+Route::get('/discounts', [\App\Http\Controllers\DiscountController::class, 'getAll']);
+Route::get('/discounts/{order_id}', [\App\Http\Controllers\DiscountController::class, 'calculateDiscount']);

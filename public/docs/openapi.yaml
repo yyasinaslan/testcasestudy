@@ -7,9 +7,9 @@ servers:
   -
     url: 'http://localhost'
 paths:
-  /api/products:
+  /api/discounts:
     get:
-      summary: 'Ürünleri Listele'
+      summary: 'Butun kurallari getir'
       description: ''
       parameters:
         -
@@ -38,47 +38,79 @@ paths:
                 example:
                   -
                     id: 1
-                    category: 1
-                    name: 'Black&Decker A7062 40 Parça Cırcırlı Tornavida Seti'
-                    price: 120.75
-                    stock: 10
-                    created_at: '2022-07-11T19:15:47.000000Z'
-                    updated_at: '2022-07-11T19:15:47.000000Z'
+                    name: '10 percent over 1000'
+                    type: cart
+                    filters: null
+                    rule: '{"condition":"{cart.total} >= 1000","amount":"{cart.total} * 0.1"}'
+                    expired_at: null
+                    created_at: '2022-07-14T23:06:30.000000Z'
+                    updated_at: '2022-07-14T23:06:30.000000Z'
                   -
                     id: 2
-                    category: 1
-                    name: "Reko Mini Tamir Hassas Tornavida Seti 32'li"
-                    price: 49.5
-                    stock: 10
-                    created_at: '2022-07-11T19:15:47.000000Z'
-                    updated_at: '2022-07-11T19:15:47.000000Z'
+                    name: 'Buy 5 get 1 in category id 2'
+                    type: product
+                    filters: null
+                    rule: '{"condition":"{product.category} == 2 && {product.quantity} == 6","amount":"{product.unitPrice}"}'
+                    expired_at: null
+                    created_at: '2022-07-14T23:06:30.000000Z'
+                    updated_at: '2022-07-14T23:06:30.000000Z'
                   -
                     id: 3
-                    category: 2
-                    name: 'Viko Karre Anahtar - Beyaz'
-                    price: 11.28
-                    stock: 10
-                    created_at: '2022-07-11T19:15:47.000000Z'
-                    updated_at: '2022-07-11T19:15:47.000000Z'
-                  -
-                    id: 4
-                    category: 2
-                    name: 'Legrand Salbei Anahtar, Alüminyum'
-                    price: 22.8
-                    stock: 10
-                    created_at: '2022-07-11T19:15:47.000000Z'
-                    updated_at: '2022-07-11T19:15:47.000000Z'
-                  -
-                    id: 5
-                    category: 2
-                    name: 'Schneider Asfora Beyaz Komütatör'
-                    price: 12.95
-                    stock: 10
-                    created_at: '2022-07-11T19:15:47.000000Z'
-                    updated_at: '2022-07-11T19:15:47.000000Z'
+                    name: 'Buy atleast 2 get %20 discount for the cheapest item in category id 2'
+                    type: cart
+                    filters: '{"category":1}'
+                    rule: '{"condition":"{cart.quantity} >= 2","amount":"{cart.cheapest} * 0.2"}'
+                    expired_at: null
+                    created_at: '2022-07-14T23:06:30.000000Z'
+                    updated_at: '2022-07-14T23:06:30.000000Z'
       tags:
-        - Ürünler
+        - 'Indirim Kurallari'
       security: []
+  '/api/discounts/{order_id}':
+    get:
+      summary: 'Sipariş için indirim hesapla'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - 'Indirim Kurallari'
+      security: []
+    parameters:
+      -
+        in: path
+        name: order_id
+        description: 'Optional parameter. Sipariş id (order_id)'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 6
   /api/orders:
     get:
       summary: 'Siparis Listeleme'
@@ -118,42 +150,8 @@ paths:
                         unitPrice: '11.28'
                         total: '112.80'
                     total: 112.8
-                    created_at: '2022-07-11T19:15:47.000000Z'
-                    updated_at: '2022-07-11T19:15:47.000000Z'
-                  -
-                    id: 2
-                    customerId: 2
-                    items:
-                      -
-                        productId: 101
-                        quantity: 2
-                        unitPrice: '49.50'
-                        total: '99.00'
-                      -
-                        productId: 100
-                        quantity: 1
-                        unitPrice: '120.75'
-                        total: '120.75'
-                    total: 219.75
-                    created_at: '2022-07-11T19:15:47.000000Z'
-                    updated_at: '2022-07-11T19:15:47.000000Z'
-                  -
-                    id: 3
-                    customerId: 3
-                    items:
-                      -
-                        productId: 102
-                        quantity: 6
-                        unitPrice: '11.28'
-                        total: '67.68'
-                      -
-                        productId: 100
-                        quantity: 10
-                        unitPrice: '120.75'
-                        total: '1207.50'
-                    total: 1275.18
-                    created_at: '2022-07-11T19:15:47.000000Z'
-                    updated_at: '2022-07-11T19:15:47.000000Z'
+                    created_at: '2022-07-12T15:14:16.000000Z'
+                    updated_at: '2022-07-12T15:14:16.000000Z'
       tags:
         - Siparişler
       security: []
@@ -185,10 +183,10 @@ paths:
             schema:
               type: object
               properties:
-                consumerId:
+                customerId:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 18
                 items:
                   type: array
                   description: ''
@@ -200,32 +198,17 @@ paths:
                       productId:
                         type: integer
                         description: ''
-                        example: 11
+                        example: 16
                       quantity:
                         type: integer
                         description: ''
-                        example: 3
-                      unitPrice:
-                        type: number
-                        description: ''
-                        example: 1765.9477595
-                      total:
-                        type: number
-                        description: ''
-                        example: 0.846325
+                        example: 16
                     required:
                       - productId
                       - quantity
-                      - unitPrice
-                      - total
-                total:
-                  type: number
-                  description: ''
-                  example: 0.0
               required:
-                - consumerId
+                - customerId
                 - items
-                - total
       security: []
   '/api/orders/{id}':
     delete:
@@ -255,14 +238,57 @@ paths:
         in: path
         name: id
         description: 'The ID of the order.'
-        example: 15
+        example: 1
         required: true
         schema:
           type: integer
+  /api/products:
+    get:
+      summary: 'Ürünleri Listele'
+      description: 'Ürünler için şimdilik sadece listeleme özelliği bulunmaktadır.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 100
+                    category: 1
+                    name: 'Black&Decker A7062 40 Parça Cırcırlı Tornavida Seti'
+                    price: 120.75
+                    stock: 10
+                    created_at: '2022-07-12T15:14:16.000000Z'
+                    updated_at: '2022-07-12T15:14:16.000000Z'
+      tags:
+        - Ürünler
+      security: []
 tags:
   -
-    name: Ürünler
+    name: 'Indirim Kurallari'
     description: ''
   -
     name: Siparişler
+    description: ''
+  -
+    name: Ürünler
     description: ''
