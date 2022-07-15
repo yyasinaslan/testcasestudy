@@ -90,12 +90,13 @@ return new class extends Migration {
              *  }
              * Examples for cart types:
              * {condition: "{cart.total} >= 1000", amount: "{cart.total} * 0.1"}
-             * {condition: "{cart.quantity} >= 1", amount: "{cart.cheapest} * 0.2"}
+             * {condition: "{cart.quantity} >= 2", amount: "{cart.cheapest} * 0.2"}
              *
              * Usable props for product specific:
              * product {
              *      category,
-             *      quantity, unitPrice,
+             *      quantity,
+             *      unitPrice,
              *      total,
              *      id
              *  }
@@ -106,9 +107,14 @@ return new class extends Migration {
             $table->json('rule');
 
             /**
+             * Discount priority settings (Default:0). Higher the priority that discount will calculated first.
+             */
+            $table->integer('priority')->default(0);
+
+            /**
              * Discount expiration date
              */
-            $table->timestamp('expired_at')->nullable();
+            $table->timestamp('expires_at')->nullable();
 
             $table->timestamps();
         });
@@ -130,7 +136,7 @@ return new class extends Migration {
 
                 $order->id = $ordersDatum->id;
                 $order->customerId = $ordersDatum->customerId;
-                $order->items = json_encode($ordersDatum->items);
+                $order->items = $ordersDatum->items;
                 $order->total = $ordersDatum->total;
 
                 $order->save();
@@ -173,10 +179,11 @@ return new class extends Migration {
             $discount1->name = "10 percent over 1000";
             $discount1->type = "cart";
             $discount1->filters = null;
-            $discount1->rule = json_encode([
+            $discount1->rule = [
                 'condition' => '{cart.total} >= 1000',
                 'amount' => '{cart.total} * 0.1'
-            ]);
+            ];
+            $discount1->priority = 1;
             $discount1->save();
 
             /*
@@ -186,25 +193,27 @@ return new class extends Migration {
             $discount2->name = "Buy 5 get 1 in category id 2";
             $discount2->type = "product";
             $discount2->filters = null;
-            $discount2->rule = json_encode([
-                'condition' => '{product.category} == 2 && {product.quantity} == 6',
-                'amount' => '{product.unitPrice}'
-            ]);
+            $discount2->rule = [
+                'condition' => '{product.category} == 2 && {product.quantity} / 6 >= 1',
+                'amount' => 'floor({product.quantity} / 6) * {product.unitPrice}'
+            ];
+            $discount2->priority = 2;
             $discount2->save();
 
             /*
              * 1 ID'li kategoriden iki veya daha fazla ürün satın alındığında, en ucuz ürüne %20 indirim yapılır.
              */
             $discount3 = new \App\Models\Discount();
-            $discount3->name = "Buy atleast 2 get %20 discount for the cheapest item in category id 2";
+            $discount3->name = "Buy atleast 2 items in category 1, get %20 discount for the cheapest item";
             $discount3->type = "cart";
-            $discount3->filters = json_encode([
+            $discount3->filters = [
                 'category' => 1
-            ]);
-            $discount3->rule = json_encode([
+            ];
+            $discount3->rule = [
                 'condition' => '{cart.quantity} >= 2',
                 'amount' => '{cart.cheapest} * 0.2'
-            ]);
+            ];
+            $discount3->priority = 3;
             $discount3->save();
 
         } catch (Exception $exception) {

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Discount extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'filters' => 'json',
+        'rule' => 'json',
+        'expires_at' => 'datetime'
+    ];
 }
