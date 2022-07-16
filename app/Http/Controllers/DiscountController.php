@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
 
 /**
  * @group Indirim Kurallari
@@ -22,6 +23,34 @@ class DiscountController extends Controller
     public function getAll()
     {
         return Discount::all();
+    }
+
+    /**
+     * Indirim kurali ekle
+     *
+     * @bodyParam name string
+     * @bodyParam type string product | cart. Example: cart
+     * @bodyParam filters json Optional. You can filter by category or product id. Example: {"category":2}
+     * @bodyParam rule json required
+     * @bodyParam rule.condition string required Example: {cart.total} >= 1000
+     * @bodyParam rule.amount string required Example: {cart.total} * 0.1
+     * @bodyParam priority integer Priority. Higher priority discounts will be calculated first.
+     *
+     * @param Request $request
+     */
+    public function addDiscount(Request $request)
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+            'type' => ['required', Rule::in(['product', 'cart'])],
+            'filters' => ['json'],
+            'rule' => ['required', 'json'],
+            'priority' => ['required', 'numeric', 'integer'],
+        ]);
+
+        if (!isset($data['rule']['condition'])){
+
+        }
     }
 
     /**
@@ -94,6 +123,7 @@ class DiscountController extends Controller
         $items = $order->items;
 
         $filteredItems = [];
+
         // Filter items
         if ($discount->filters != null) {
 

@@ -80,6 +80,9 @@
                                     <li class="tocify-item level-2" data-unique="indirim-kurallari-GETapi-discounts--order_id-">
                         <a href="#indirim-kurallari-GETapi-discounts--order_id-">Sipariş için indirim hesapla</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="indirim-kurallari-POSTapi-discounts">
+                        <a href="#indirim-kurallari-POSTapi-discounts">Indirim kurali ekle</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-3" class="tocify-header">
@@ -118,7 +121,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 14 2022</li>
+        <li>Last updated: July 16 2022</li>
     </ul>
 </div>
 
@@ -185,7 +188,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 55
+x-ratelimit-remaining: 59
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -196,30 +199,44 @@ access-control-allow-origin: *
         &quot;name&quot;: &quot;10 percent over 1000&quot;,
         &quot;type&quot;: &quot;cart&quot;,
         &quot;filters&quot;: null,
-        &quot;rule&quot;: &quot;{\&quot;condition\&quot;:\&quot;{cart.total} &gt;= 1000\&quot;,\&quot;amount\&quot;:\&quot;{cart.total} * 0.1\&quot;}&quot;,
-        &quot;expired_at&quot;: null,
-        &quot;created_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;
+        &quot;rule&quot;: {
+            &quot;condition&quot;: &quot;{cart.total} &gt;= 1000&quot;,
+            &quot;amount&quot;: &quot;{cart.total} * 0.1&quot;
+        },
+        &quot;priority&quot;: 1,
+        &quot;expires_at&quot;: null,
+        &quot;created_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;
     },
     {
         &quot;id&quot;: 2,
         &quot;name&quot;: &quot;Buy 5 get 1 in category id 2&quot;,
         &quot;type&quot;: &quot;product&quot;,
         &quot;filters&quot;: null,
-        &quot;rule&quot;: &quot;{\&quot;condition\&quot;:\&quot;{product.category} == 2 &amp;&amp; {product.quantity} == 6\&quot;,\&quot;amount\&quot;:\&quot;{product.unitPrice}\&quot;}&quot;,
-        &quot;expired_at&quot;: null,
-        &quot;created_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;
+        &quot;rule&quot;: {
+            &quot;condition&quot;: &quot;{product.category} == 2 &amp;&amp; {product.quantity} / 6 &gt;= 1&quot;,
+            &quot;amount&quot;: &quot;floor({product.quantity} / 6) * {product.unitPrice}&quot;
+        },
+        &quot;priority&quot;: 2,
+        &quot;expires_at&quot;: null,
+        &quot;created_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;
     },
     {
         &quot;id&quot;: 3,
-        &quot;name&quot;: &quot;Buy atleast 2 get %20 discount for the cheapest item in category id 2&quot;,
+        &quot;name&quot;: &quot;Buy atleast 2 items in category 1, get %20 discount for the cheapest item&quot;,
         &quot;type&quot;: &quot;cart&quot;,
-        &quot;filters&quot;: &quot;{\&quot;category\&quot;:1}&quot;,
-        &quot;rule&quot;: &quot;{\&quot;condition\&quot;:\&quot;{cart.quantity} &gt;= 2\&quot;,\&quot;amount\&quot;:\&quot;{cart.cheapest} * 0.2\&quot;}&quot;,
-        &quot;expired_at&quot;: null,
-        &quot;created_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-14T23:06:30.000000Z&quot;
+        &quot;filters&quot;: {
+            &quot;category&quot;: 1
+        },
+        &quot;rule&quot;: {
+            &quot;condition&quot;: &quot;{cart.quantity} &gt;= 2&quot;,
+            &quot;amount&quot;: &quot;{cart.cheapest} * 0.2&quot;
+        },
+        &quot;priority&quot;: 3,
+        &quot;expires_at&quot;: null,
+        &quot;created_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;
     }
 ]</code>
  </pre>
@@ -278,14 +295,14 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/discounts/6" \
+    --get "http://localhost/api/discounts/5" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/discounts/6"
+    "http://localhost/api/discounts/5"
 );
 
 const headers = {
@@ -308,15 +325,18 @@ fetch(url, {
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 54
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json"></code>
+<code class="language-json">{
+    &quot;error&quot;: &quot;order.not_found&quot;,
+    &quot;message&quot;: &quot;Sipariş bulunamadı.&quot;
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-discounts--order_id-" hidden>
@@ -364,12 +384,177 @@ access-control-allow-origin: *
                 <input type="number"
                name="order_id"
                data-endpoint="GETapi-discounts--order_id-"
-               value="6"
+               value="5"
                data-component="url" hidden>
     <br>
 <p>Sipariş id (order_id)</p>
             </p>
                     </form>
+
+            <h2 id="indirim-kurallari-POSTapi-discounts">Indirim kurali ekle</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-discounts">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/discounts" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"vel\",
+    \"type\": \"cart\",
+    \"filters\": \"{\\\"category\\\":2}\",
+    \"rule\": \"expedita\",
+    \"priority\": 10
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/discounts"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "vel",
+    "type": "cart",
+    "filters": "{\"category\":2}",
+    "rule": "expedita",
+    "priority": 10
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-discounts">
+</span>
+<span id="execution-results-POSTapi-discounts" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-discounts"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-discounts"></code></pre>
+</span>
+<span id="execution-error-POSTapi-discounts" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-discounts"></code></pre>
+</span>
+<form id="form-POSTapi-discounts" data-method="POST"
+      data-path="api/discounts"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-discounts', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-discounts"
+                    onclick="tryItOut('POSTapi-discounts');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-discounts"
+                    onclick="cancelTryOut('POSTapi-discounts');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-discounts" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/discounts</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-discounts"
+               value="vel"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>type</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="type"
+               data-endpoint="POSTapi-discounts"
+               value="cart"
+               data-component="body" hidden>
+    <br>
+<p>product | cart.</p>
+        </p>
+                <p>
+            <b><code>filters</code></b>&nbsp;&nbsp;<small>json</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filters"
+               data-endpoint="POSTapi-discounts"
+               value="{"category":2}"
+               data-component="body" hidden>
+    <br>
+<p>Optional. You can filter by category or product id.</p>
+        </p>
+                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>rule</code></b>&nbsp;&nbsp;<small>json</small>  &nbsp;
+<br>
+
+            </summary>
+                                                <p>
+                        <b><code>rule.condition</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="rule.condition"
+               data-endpoint="POSTapi-discounts"
+               value="{cart.total} >= 1000"
+               data-component="body" hidden>
+    <br>
+
+                    </p>
+                                                                <p>
+                        <b><code>rule.amount</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="rule.amount"
+               data-endpoint="POSTapi-discounts"
+               value="{cart.total} * 0.1"
+               data-component="body" hidden>
+    <br>
+
+                    </p>
+                                    </details>
+        </p>
+                <p>
+            <b><code>priority</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="priority"
+               data-endpoint="POSTapi-discounts"
+               value="10"
+               data-component="body" hidden>
+    <br>
+<p>Priority. Higher priority discounts will be calculated first.</p>
+        </p>
+        </form>
 
         <h1 id="siparisler">Siparişler</h1>
 
@@ -493,11 +678,11 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"customerId\": 18,
+    \"customerId\": 12,
     \"items\": [
         {
-            \"productId\": 16,
-            \"quantity\": 16
+            \"productId\": 12,
+            \"quantity\": 17
         }
     ]
 }"
@@ -515,11 +700,11 @@ const headers = {
 };
 
 let body = {
-    "customerId": 18,
+    "customerId": 12,
     "items": [
         {
-            "productId": 16,
-            "quantity": 16
+            "productId": 12,
+            "quantity": 17
         }
     ]
 };
@@ -579,7 +764,7 @@ fetch(url, {
                 <input type="number"
                name="customerId"
                data-endpoint="POSTapi-orders"
-               value="18"
+               value="12"
                data-component="body" hidden>
     <br>
 
@@ -596,7 +781,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.productId"
                data-endpoint="POSTapi-orders"
-               value="16"
+               value="12"
                data-component="body" hidden>
     <br>
 
@@ -606,7 +791,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.quantity"
                data-endpoint="POSTapi-orders"
-               value="16"
+               value="17"
                data-component="body" hidden>
     <br>
 
@@ -628,14 +813,14 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/orders/1" \
+    "http://localhost/api/orders/16" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/orders/1"
+    "http://localhost/api/orders/16"
 );
 
 const headers = {
@@ -697,7 +882,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="DELETEapi-orders--id-"
-               value="1"
+               value="16"
                data-component="url" hidden>
     <br>
 <p>The ID of the order.</p>

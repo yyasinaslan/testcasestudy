@@ -22,4 +22,5 @@ Route::delete('/orders/{id}', [\App\Http\Controllers\OrderController::class, 'de
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'listProducts']);
 
 Route::get('/discounts', [\App\Http\Controllers\DiscountController::class, 'getAll']);
+Route::post('/discounts', [\App\Http\Controllers\DiscountController::class, 'addDiscount']);
 Route::get('/discounts/{order_id}', [\App\Http\Controllers\DiscountController::class, 'calculateDiscount']);

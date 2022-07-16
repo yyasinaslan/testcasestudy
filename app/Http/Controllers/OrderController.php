@@ -115,14 +115,7 @@ class OrderController extends Controller
 
         $order->save();
 
-        // Urun stogunu guncelle
-        foreach ($newItems as $newItem) {
-            $product = Product::find($newItem['productId']);
-
-            $product->stock = (integer)$product->stock - (integer)$newItem['quantity'];
-
-            $product->save();
-        }
+        $this->updateStock($order->items);
 
         return $order->toArray();
     }
@@ -152,10 +145,29 @@ class OrderController extends Controller
             ];
         }
 
+        $this->updateStock($order->items, 'add');
+
         return [
             'message' => __('Sipariş başarıyla silindi.')
         ];
 
 
+    }
+
+    public function updateStock($items, $operation = 'subtract')
+    {
+        // Urun stogunu guncelle
+        // todo: ürün stoğu güncellemeyi event trigger yap.
+        foreach ($items as $item) {
+            $product = Product::find($item['productId']);
+
+            if ($operation=='add'){
+                $product->stock = (integer)$product->stock + (integer)$item['quantity'];
+            }else {
+                $product->stock = (integer)$product->stock - (integer)$item['quantity'];
+            }
+
+            $product->save();
+        }
     }
 }
