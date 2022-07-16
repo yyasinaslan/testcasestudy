@@ -205,8 +205,8 @@ access-control-allow-origin: *
         },
         &quot;priority&quot;: 1,
         &quot;expires_at&quot;: null,
-        &quot;created_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;
+        &quot;created_at&quot;: &quot;2022-07-16T09:50:48.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-16T09:50:48.000000Z&quot;
     },
     {
         &quot;id&quot;: 2,
@@ -219,8 +219,8 @@ access-control-allow-origin: *
         },
         &quot;priority&quot;: 2,
         &quot;expires_at&quot;: null,
-        &quot;created_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;
+        &quot;created_at&quot;: &quot;2022-07-16T09:50:48.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-16T09:50:48.000000Z&quot;
     },
     {
         &quot;id&quot;: 3,
@@ -235,8 +235,8 @@ access-control-allow-origin: *
         },
         &quot;priority&quot;: 3,
         &quot;expires_at&quot;: null,
-        &quot;created_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2022-07-16T08:21:29.000000Z&quot;
+        &quot;created_at&quot;: &quot;2022-07-16T09:50:48.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2022-07-16T09:50:48.000000Z&quot;
     }
 ]</code>
  </pre>
@@ -295,14 +295,14 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/discounts/5" \
+    --get "http://localhost/api/discounts/11" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/discounts/5"
+    "http://localhost/api/discounts/11"
 );
 
 const headers = {
@@ -384,7 +384,7 @@ access-control-allow-origin: *
                 <input type="number"
                name="order_id"
                data-endpoint="GETapi-discounts--order_id-"
-               value="5"
+               value="11"
                data-component="url" hidden>
     <br>
 <p>Sipariş id (order_id)</p>
@@ -408,11 +408,11 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"vel\",
+    \"name\": \"facere\",
     \"type\": \"cart\",
     \"filters\": \"{\\\"category\\\":2}\",
-    \"rule\": \"expedita\",
-    \"priority\": 10
+    \"rule\": \"dolores\",
+    \"priority\": 15
 }"
 </code></pre></div>
 
@@ -428,11 +428,11 @@ const headers = {
 };
 
 let body = {
-    "name": "vel",
+    "name": "facere",
     "type": "cart",
     "filters": "{\"category\":2}",
-    "rule": "expedita",
-    "priority": 10
+    "rule": "dolores",
+    "priority": 15
 };
 
 fetch(url, {
@@ -490,7 +490,7 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-discounts"
-               value="vel"
+               value="facere"
                data-component="body" hidden>
     <br>
 
@@ -549,7 +549,7 @@ fetch(url, {
                 <input type="number"
                name="priority"
                data-endpoint="POSTapi-discounts"
-               value="10"
+               value="15"
                data-component="body" hidden>
     <br>
 <p>Priority. Higher priority discounts will be calculated first.</p>
@@ -678,11 +678,11 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"customerId\": 12,
+    \"customerId\": 17,
     \"items\": [
         {
-            \"productId\": 12,
-            \"quantity\": 17
+            \"productId\": 9,
+            \"quantity\": 3
         }
     ]
 }"
@@ -700,11 +700,11 @@ const headers = {
 };
 
 let body = {
-    "customerId": 12,
+    "customerId": 17,
     "items": [
         {
-            "productId": 12,
-            "quantity": 17
+            "productId": 9,
+            "quantity": 3
         }
     ]
 };
@@ -764,7 +764,7 @@ fetch(url, {
                 <input type="number"
                name="customerId"
                data-endpoint="POSTapi-orders"
-               value="12"
+               value="17"
                data-component="body" hidden>
     <br>
 
@@ -781,7 +781,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.productId"
                data-endpoint="POSTapi-orders"
-               value="12"
+               value="9"
                data-component="body" hidden>
     <br>
 
@@ -791,7 +791,7 @@ fetch(url, {
                 <input type="number"
                name="items.0.quantity"
                data-endpoint="POSTapi-orders"
-               value="17"
+               value="3"
                data-component="body" hidden>
     <br>
 

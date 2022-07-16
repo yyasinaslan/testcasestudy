@@ -130,7 +130,7 @@ Sepet tipi indirimler için
 
 Bu değişkenler arttırılabilir.
 
-### Verilen Sipariş için İnidirimleri Hesapla
+### Verilen Sipariş için İndirimleri Hesapla
 
 ```http request
 GET http://localhost/api/discounts/{order_id}
@@ -151,8 +151,8 @@ Her bir indirim kuralı aşağıdaki adımlarla hesaplanmaktadır:
 - Ürün tipi indirim kuralında ise aynı aşamalar yapılır. Tek fark her bir ürün çeşidi için koşul ve miktar heasplaması
   ayrı yapılır ve toplanır.
 
-==***Not:** İndirim kuralında koşul ve miktar formülleri hesaplanırken PHP eval fonksiyonu deneme amaçlı kullanılmıştır.
-Daha sonra eval() yerine daha güvenli bir parser ve formül hesaplayıcı yapılması gerekmektedir.*==
+***Not:** İndirim kuralında koşul ve miktar formülleri hesaplanırken PHP eval fonksiyonu deneme amaçlı kullanılmıştır.
+Daha sonra eval() yerine daha güvenli bir parser ve formül hesaplayıcı yapılması gerekmektedir.*
 
 Örnek çıktı:
 

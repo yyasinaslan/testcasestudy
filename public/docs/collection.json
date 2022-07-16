@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Test Case Study Documentation",
-        "_postman_id": "a0afff93-1c3c-446a-a5ce-0713493a4a1e",
+        "_postman_id": "e8dfedc0-d012-44f6-91bd-61ac2ed7d512",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -70,7 +70,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "[{\"id\":1,\"name\":\"10 percent over 1000\",\"type\":\"cart\",\"filters\":null,\"rule\":{\"condition\":\"{cart.total} >= 1000\",\"amount\":\"{cart.total} * 0.1\"},\"priority\":1,\"expires_at\":null,\"created_at\":\"2022-07-16T08:21:29.000000Z\",\"updated_at\":\"2022-07-16T08:21:29.000000Z\"},{\"id\":2,\"name\":\"Buy 5 get 1 in category id 2\",\"type\":\"product\",\"filters\":null,\"rule\":{\"condition\":\"{product.category} == 2 && {product.quantity} \\\/ 6 >= 1\",\"amount\":\"floor({product.quantity} \\\/ 6) * {product.unitPrice}\"},\"priority\":2,\"expires_at\":null,\"created_at\":\"2022-07-16T08:21:29.000000Z\",\"updated_at\":\"2022-07-16T08:21:29.000000Z\"},{\"id\":3,\"name\":\"Buy atleast 2 items in category 1, get %20 discount for the cheapest item\",\"type\":\"cart\",\"filters\":{\"category\":1},\"rule\":{\"condition\":\"{cart.quantity} >= 2\",\"amount\":\"{cart.cheapest} * 0.2\"},\"priority\":3,\"expires_at\":null,\"created_at\":\"2022-07-16T08:21:29.000000Z\",\"updated_at\":\"2022-07-16T08:21:29.000000Z\"}]",
+                            "body": "[{\"id\":1,\"name\":\"10 percent over 1000\",\"type\":\"cart\",\"filters\":null,\"rule\":{\"condition\":\"{cart.total} >= 1000\",\"amount\":\"{cart.total} * 0.1\"},\"priority\":1,\"expires_at\":null,\"created_at\":\"2022-07-16T09:50:48.000000Z\",\"updated_at\":\"2022-07-16T09:50:48.000000Z\"},{\"id\":2,\"name\":\"Buy 5 get 1 in category id 2\",\"type\":\"product\",\"filters\":null,\"rule\":{\"condition\":\"{product.category} == 2 && {product.quantity} \\\/ 6 >= 1\",\"amount\":\"floor({product.quantity} \\\/ 6) * {product.unitPrice}\"},\"priority\":2,\"expires_at\":null,\"created_at\":\"2022-07-16T09:50:48.000000Z\",\"updated_at\":\"2022-07-16T09:50:48.000000Z\"},{\"id\":3,\"name\":\"Buy atleast 2 items in category 1, get %20 discount for the cheapest item\",\"type\":\"cart\",\"filters\":{\"category\":1},\"rule\":{\"condition\":\"{cart.quantity} >= 2\",\"amount\":\"{cart.cheapest} * 0.2\"},\"priority\":3,\"expires_at\":null,\"created_at\":\"2022-07-16T09:50:48.000000Z\",\"updated_at\":\"2022-07-16T09:50:48.000000Z\"}]",
                             "name": ""
                         }
                     ]
@@ -87,7 +87,7 @@
                                 {
                                     "id": "order_id",
                                     "key": "order_id",
-                                    "value": "5",
+                                    "value": "11",
                                     "description": "Sipari\u015f id (order_id)"
                                 }
                             ]
@@ -161,7 +161,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vel\",\"type\":\"cart\",\"filters\":\"{\\\"category\\\":2}\",\"rule\":\"expedita\",\"priority\":10}"
+                            "raw": "{\"name\":\"facere\",\"type\":\"cart\",\"filters\":\"{\\\"category\\\":2}\",\"rule\":\"dolores\",\"priority\":15}"
                         },
                         "description": "",
                         "auth": {
@@ -233,7 +233,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customerId\":12,\"items\":[{\"productId\":12,\"quantity\":17}]}"
+                            "raw": "{\"customerId\":17,\"items\":[{\"productId\":9,\"quantity\":3}]}"
                         },
                         "description": "",
                         "auth": {
